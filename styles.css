@@ -283,6 +283,28 @@ figcaption {
 .copy-card p:first-child { margin-top: 0; }
 .copy-card p:last-child, .price-card p:last-child, .contact-card p:last-child { margin-bottom: 0; }
 .notice-card { background: var(--soft-accent); }
+
+.transparency-grid {
+  display: grid;
+  gap: 18px;
+}
+.document-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--panel);
+  box-shadow: 0 10px 28px rgba(23,23,23,0.045);
+}
+.document-card a {
+  display: block;
+  background: #f1eee8;
+}
+.document-card img {
+  width: 100%;
+  max-height: 680px;
+  object-fit: contain;
+}
 .checklist {
   margin: 0;
   padding-left: 1.2rem;
@@ -501,6 +523,7 @@ h3 {
   .hero-photo img { height: 100%; min-height: 520px; }
   .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 26px; align-items: start; }
   .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .transparency-grid { grid-template-columns: 0.95fr 1.05fr; align-items: start; }
   .feature-highlights { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .feature-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mobile-sticky { display: none; }
