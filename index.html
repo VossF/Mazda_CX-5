@@ -192,7 +192,7 @@
     <div class="lightbox" data-lightbox hidden>
       <button class="lightbox-close" type="button" data-lightbox-close aria-label="Cerrar carrusel">×</button>
       <button class="lightbox-nav prev" type="button" data-lightbox-prev aria-label="Foto anterior">‹</button>
-      <figure class="lightbox-figure">
+      <figure class="lightbox-figure" data-lightbox-swipe-area aria-label="Carrusel de fotos. Desliza a la izquierda o derecha para navegar.">
         <img data-lightbox-image src="" alt="">
         <figcaption>
           <strong data-lightbox-title></strong>
@@ -312,7 +312,13 @@
     const lightboxImage = document.querySelector('[data-lightbox-image]');
     const lightboxTitle = document.querySelector('[data-lightbox-title]');
     const lightboxCounter = document.querySelector('[data-lightbox-counter]');
+    const lightboxSwipeArea = document.querySelector('[data-lightbox-swipe-area]');
+    const minSwipeDistance = 50;
+    const maxSwipeVerticalDrift = 80;
     let activeIndex = 0;
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+    let swipePointerId = null;
 
     function renderGallery() {
       ['Exterior', 'Interior'].forEach((group) => {
@@ -381,6 +387,31 @@
     document.querySelector('[data-lightbox-close]').addEventListener('click', closeLightbox);
     document.querySelector('[data-lightbox-prev]').addEventListener('click', () => moveLightbox(-1));
     document.querySelector('[data-lightbox-next]').addEventListener('click', () => moveLightbox(1));
+
+    lightboxSwipeArea.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) return;
+      swipeStartX = event.clientX;
+      swipeStartY = event.clientY;
+      swipePointerId = event.pointerId;
+      lightboxSwipeArea.setPointerCapture(event.pointerId);
+    });
+
+    lightboxSwipeArea.addEventListener('pointerup', (event) => {
+      if (swipePointerId !== event.pointerId) return;
+      const horizontalDistance = event.clientX - swipeStartX;
+      const verticalDistance = event.clientY - swipeStartY;
+      swipePointerId = null;
+
+      if (Math.abs(horizontalDistance) < minSwipeDistance) return;
+      if (Math.abs(verticalDistance) > maxSwipeVerticalDrift) return;
+
+      moveLightbox(horizontalDistance < 0 ? 1 : -1);
+    });
+
+    lightboxSwipeArea.addEventListener('pointercancel', () => {
+      swipePointerId = null;
+    });
+
     lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', (event) => {
       if (lightbox.hidden) return;

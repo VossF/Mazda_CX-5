@@ -386,6 +386,8 @@ h3 {
 .lightbox-figure {
   margin: 0;
   max-height: calc(100vh - 72px);
+  touch-action: pan-y;
+  user-select: none;
 }
 .lightbox-figure img {
   width: 100%;
