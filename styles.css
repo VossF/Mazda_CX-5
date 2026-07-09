@@ -81,6 +81,15 @@ h2 { font-size: clamp(1.8rem, 7vw, 3.2rem); }
   font-size: 1.15rem;
 }
 .price strong { color: var(--accent-dark); }
+.hero-copy .price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--soft-accent);
+  font-weight: 700;
+}
 .large { font-size: clamp(1.35rem, 5vw, 2rem); }
 
 .actions {
@@ -228,6 +237,10 @@ figcaption {
 .feature-list li {
   break-inside: avoid;
   margin: 8px 0;
+.fact-grid article { padding: 16px; transition: transform 180ms ease, box-shadow 180ms ease; }
+.fact-grid article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(23,23,23,0.07);
 }
 .fact-grid span {
   display: block;
@@ -248,10 +261,15 @@ figcaption {
   padding-left: 1.2rem;
 }
 .checklist li { margin: 10px 0; }
+.checklist li::marker { color: var(--accent); }
 .compact li { margin: 8px 0; }
 .gallery {
   display: grid;
+  align-items: start;
   gap: 16px;
+}
+.gallery figure {
+  height: auto;
 }
 .price-card {
   border-color: #d9b7bd;
