@@ -9,6 +9,8 @@
   --soft-accent: #f5e7e8;
   --shadow: 0 18px 45px rgba(23, 23, 23, 0.08);
   --overlay: rgba(12, 12, 14, 0.82);
+  --page-gutter: clamp(18px, 4vw, 40px);
+  --card-pad: clamp(20px, 4vw, 34px);
 }
 
 * { box-sizing: border-box; }
@@ -25,8 +27,14 @@ a { color: inherit; }
 button { font: inherit; }
 body.is-lightbox-open { overflow: hidden; }
 
+h1, h2, h3, p, li, strong, span, a, button, figcaption {
+  overflow-wrap: anywhere;
+}
+
+[hidden] { display: none !important; }
+
 .hero, .section, .footer {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1120px, calc(100% - (var(--page-gutter) * 2)));
   margin: 0 auto;
 }
 
@@ -56,7 +64,7 @@ body.is-lightbox-open { overflow: hidden; }
   background: linear-gradient(145deg, var(--panel), #fbfaf7);
   border: 1px solid var(--line);
   border-radius: 28px;
-  padding: clamp(26px, 6vw, 54px);
+  padding: clamp(24px, 5vw, 54px);
   box-shadow: var(--shadow);
 }
 .eyebrow {
@@ -72,8 +80,8 @@ h1, h2 {
   letter-spacing: -0.045em;
   line-height: 1.05;
 }
-h1 { font-size: clamp(2.35rem, 10vw, 5rem); }
-h2 { font-size: clamp(1.8rem, 7vw, 3.2rem); }
+h1 { font-size: clamp(2.15rem, 9vw, 5rem); }
+h2 { font-size: clamp(1.7rem, 6vw, 3.2rem); }
 .subtitle {
   max-width: 760px;
   color: var(--muted);
@@ -106,7 +114,10 @@ h2 { font-size: clamp(1.8rem, 7vw, 3.2rem); }
   align-items: center;
   justify-content: center;
   border-radius: 999px;
+  width: 100%;
+  max-width: 100%;
   padding: 13px 20px;
+  text-align: center;
   font-weight: 800;
   text-decoration: none;
 }
@@ -145,7 +156,7 @@ h2 { font-size: clamp(1.8rem, 7vw, 3.2rem); }
 }
 
 figcaption {
-  padding: 12px 14px;
+  padding: 12px 16px;
   color: var(--muted);
   font-size: 0.92rem;
   background: rgba(255,255,255,0.86);
@@ -168,7 +179,7 @@ figcaption {
   background: var(--panel);
   box-shadow: 0 10px 28px rgba(23,23,23,0.045);
 }
-.fact-grid article { padding: 16px; }
+.fact-grid article { padding: clamp(16px, 3vw, 22px); }
 .feature-highlights {
   display: grid;
   gap: 12px;
@@ -179,7 +190,7 @@ figcaption {
   border-radius: 22px;
   background: var(--panel);
   box-shadow: 0 10px 28px rgba(23,23,23,0.045);
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
 }
 .feature-highlights span {
   display: block;
@@ -204,7 +215,7 @@ figcaption {
 .features-details summary {
   cursor: pointer;
   list-style: none;
-  padding: 18px 20px;
+  padding: 18px clamp(18px, 4vw, 24px);
   color: var(--accent-dark);
   font-weight: 900;
 }
@@ -217,7 +228,7 @@ figcaption {
 }
 .features-details[open] summary { border-bottom: 1px solid #ead2d6; }
 .features-details[open] summary::after { content: "–"; }
-.features-content { padding: 18px 20px 22px; }
+.features-content { padding: 18px clamp(18px, 4vw, 24px) 24px; }
 .spec-strip {
   display: grid;
   gap: 10px;
@@ -236,7 +247,8 @@ figcaption {
 .feature-list li {
   break-inside: avoid;
   margin: 8px 0;
-.fact-grid article { padding: 16px; transition: transform 180ms ease, box-shadow 180ms ease; }
+}
+.fact-grid article { transition: transform 180ms ease, box-shadow 180ms ease; }
 .fact-grid article:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 34px rgba(23,23,23,0.07);
@@ -251,7 +263,7 @@ figcaption {
   margin-top: 3px;
   line-height: 1.25;
 }
-.copy-card, .notice-card, .price-card, .contact-card { padding: clamp(20px, 5vw, 34px); }
+.copy-card, .notice-card, .price-card, .contact-card { padding: var(--card-pad); }
 .copy-card p:first-child { margin-top: 0; }
 .copy-card p:last-child, .price-card p:last-child, .contact-card p:last-child { margin-bottom: 0; }
 .notice-card { background: var(--soft-accent); }
@@ -276,7 +288,7 @@ figcaption {
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.62);
   box-shadow: 0 12px 32px rgba(23,23,23,0.045);
-  padding: clamp(16px, 4vw, 24px);
+  padding: clamp(18px, 4vw, 28px);
 }
 .gallery-group-header {
   display: flex;
@@ -305,7 +317,7 @@ h3 {
 .gallery {
   display: grid;
   align-items: start;
-  gap: 16px;
+  gap: clamp(14px, 3vw, 18px);
 }
 .gallery-card {
   position: relative;
@@ -367,7 +379,7 @@ h3 {
   grid-template-columns: 54px minmax(0, 1fr) 54px;
   align-items: center;
   gap: 8px;
-  padding: 18px;
+  padding: clamp(18px, 3vw, 24px);
   background: var(--overlay);
   backdrop-filter: blur(10px);
 }
@@ -418,6 +430,16 @@ h3 {
 .lightbox-close:hover,
 .lightbox-nav:hover,
 .text-button:hover { background: var(--accent); color: #fff; }
+.contact-pending {
+  display: inline-flex;
+  margin: 8px 0 18px;
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--accent-dark);
+  background: var(--soft-accent);
+  font-weight: 800;
+}
+
 .price-card {
   border-color: #d9b7bd;
   background: linear-gradient(145deg, #fff, #fbf4f4);
@@ -460,7 +482,6 @@ h3 {
   .hero-grid { grid-template-columns: 1.08fr 0.92fr; align-items: stretch; }
   .hero-photo img { height: 100%; min-height: 520px; }
   .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 26px; align-items: start; }
-  .gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .feature-highlights { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .feature-list { columns: 2; column-gap: 34px; }
@@ -470,8 +491,12 @@ h3 {
 
 
 @media (max-width: 679px) {
+  .hero, .section, .footer { width: min(100% - 28px, 1120px); }
+  .topbar { padding: 14px 0; }
+  .hero-grid { padding: 22px 0 38px; }
+  .hero-copy .price { display: flex; align-items: flex-start; border-radius: 18px; }
   .gallery-group-header { flex-direction: column; }
-  .text-button, .gallery-all-button { width: 100%; }
+  .text-button, .gallery-all-button { width: 100%; white-space: normal; }
   .lightbox { grid-template-columns: 1fr; padding: 60px 12px 16px; }
   .lightbox-nav {
     position: fixed;
@@ -488,4 +513,8 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+@media (min-width: 1200px) {
+  .hero, .section, .footer { width: min(1180px, calc(100% - (var(--page-gutter) * 2))); }
 }
