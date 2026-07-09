@@ -41,17 +41,21 @@ Keep the rest of the link as-is unless you want to edit the prefilled message.
 
 ## 3. Add photos
 
-Put your car photos in the `photos/` folder using these exact file names:
+Put your car photos in the `photos/` folder using these exact file names for the current classified gallery:
 
-- `exterior-front.jpg`
-- `exterior-rear.jpg`
-- `side.jpg`
-- `interior-front.jpg`
-- `interior-rear.jpg`
-- `dashboard.jpg`
-- `odometer.jpg`
-- `tires.jpg`
-- `service-history.jpg`
+- `01-cajuela.jpg`
+- `02-interior-delantero-tablero.jpg`
+- `03-consola-central.jpg`
+- `04-volante-tablero.jpg`
+- `05-asientos-traseros.jpg`
+
+Suggested classification for the provided photos:
+
+1. Cajuela / cargo area.
+2. Interior delantero / tablero general.
+3. Consola central / palanca / controles.
+4. Volante / tablero / cuadro de instrumentos.
+5. Asientos traseros / segunda fila.
 
 Important: blur plates before uploading photos if the plates are visible.
 
