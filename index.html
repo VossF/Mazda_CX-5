@@ -154,7 +154,7 @@
             </section>
           </div>
           <div class="features-collapse-footer">
-            <button class="features-collapse-button" type="button" data-features-collapse>Ocultar equipamiento completo</button>
+            <button class="features-collapse-button" type="button" data-features-collapse>Contraer características</button>
           </div>
         </div>
       </details>
@@ -293,6 +293,7 @@
   </footer>
 
   <a class="mobile-sticky" href="#contacto" data-contact-action hidden>Contacto</a>
+  <button class="features-sticky-collapse" type="button" data-features-sticky-collapse hidden>Contraer características</button>
   <script>
     const contactPhone = '';
     const contactEmail = '';
@@ -351,27 +352,53 @@
     const featuresDetails = document.querySelector('.features-details');
     const featuresCollapseButtons = document.querySelectorAll('[data-features-collapse]');
     const featuresSummaryTitle = document.querySelector('[data-features-summary-title]');
+    const featuresStickyCollapse = document.querySelector('[data-features-sticky-collapse]');
 
     function updateFeaturesSummary() {
       if (!featuresDetails || !featuresSummaryTitle) return;
       featuresSummaryTitle.textContent = featuresDetails.open ? 'Ocultar equipamiento completo' : 'Ver equipamiento completo';
     }
 
+    function shouldShowFeaturesStickyCollapse() {
+      if (!featuresDetails || !featuresDetails.open) return false;
+      const section = featuresDetails.closest('.features-section');
+      if (!section) return false;
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      return rect.top < viewportHeight && rect.bottom > viewportHeight;
+    }
+
+    function updateFeaturesStickyCollapse() {
+      if (!featuresStickyCollapse) return;
+      featuresStickyCollapse.hidden = !shouldShowFeaturesStickyCollapse();
+    }
+
     function collapseFeaturesList() {
       if (!featuresDetails) return;
       featuresDetails.open = false;
       updateFeaturesSummary();
+      updateFeaturesStickyCollapse();
       featuresDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
       const summary = featuresDetails.querySelector('summary');
       if (summary) summary.focus();
     }
 
     if (featuresDetails) {
-      featuresDetails.addEventListener('toggle', updateFeaturesSummary);
+      featuresDetails.addEventListener('toggle', () => {
+        updateFeaturesSummary();
+        updateFeaturesStickyCollapse();
+      });
       featuresCollapseButtons.forEach((button) => {
         button.addEventListener('click', collapseFeaturesList);
       });
+      if (featuresStickyCollapse) {
+        featuresStickyCollapse.addEventListener('click', collapseFeaturesList);
+        window.addEventListener('scroll', updateFeaturesStickyCollapse, { passive: true });
+        window.addEventListener('resize', updateFeaturesStickyCollapse);
+      }
       updateFeaturesSummary();
+      updateFeaturesStickyCollapse();
     }
 
     const visibleGroups = { Exterior: false, Interior: false };
