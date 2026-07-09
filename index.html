@@ -79,7 +79,13 @@
       </div>
 
       <details class="features-details">
-        <summary>Ver lista completa de características y equipamiento</summary>
+        <summary>
+          <span class="features-summary-copy">
+            <span class="features-summary-title" data-features-summary-title>Ver equipamiento completo</span>
+            <span class="features-summary-note">Abre la lista agrupada por confort, tecnología, seguridad y manejo.</span>
+          </span>
+          <span class="features-summary-icon" aria-hidden="true"></span>
+        </summary>
         <div class="features-content">
           <div class="spec-strip" aria-label="Especificaciones principales">
             <span><strong>Versión:</strong> Signature</span>
@@ -148,10 +154,9 @@
             </section>
           </div>
           <div class="features-collapse-footer">
-            <button class="button secondary features-collapse-button" type="button" data-features-collapse>Contraer lista de características</button>
+            <button class="features-collapse-button" type="button" data-features-collapse>Ocultar equipamiento completo</button>
           </div>
         </div>
-        <button class="features-floating-collapse" type="button" data-features-collapse hidden>Contraer características</button>
       </details>
     </section>
 
@@ -345,28 +350,28 @@
 
     const featuresDetails = document.querySelector('.features-details');
     const featuresCollapseButtons = document.querySelectorAll('[data-features-collapse]');
-    const featuresFloatingCollapse = document.querySelector('.features-floating-collapse');
+    const featuresSummaryTitle = document.querySelector('[data-features-summary-title]');
 
-    function updateFeaturesCollapseControl() {
-      if (!featuresDetails || !featuresFloatingCollapse) return;
-      featuresFloatingCollapse.hidden = !featuresDetails.open;
+    function updateFeaturesSummary() {
+      if (!featuresDetails || !featuresSummaryTitle) return;
+      featuresSummaryTitle.textContent = featuresDetails.open ? 'Ocultar equipamiento completo' : 'Ver equipamiento completo';
     }
 
     function collapseFeaturesList() {
       if (!featuresDetails) return;
       featuresDetails.open = false;
-      updateFeaturesCollapseControl();
+      updateFeaturesSummary();
       featuresDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
       const summary = featuresDetails.querySelector('summary');
       if (summary) summary.focus();
     }
 
     if (featuresDetails) {
-      featuresDetails.addEventListener('toggle', updateFeaturesCollapseControl);
+      featuresDetails.addEventListener('toggle', updateFeaturesSummary);
       featuresCollapseButtons.forEach((button) => {
         button.addEventListener('click', collapseFeaturesList);
       });
-      updateFeaturesCollapseControl();
+      updateFeaturesSummary();
     }
 
     const visibleGroups = { Exterior: false, Interior: false };
