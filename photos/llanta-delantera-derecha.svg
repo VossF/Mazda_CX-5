@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Pendiente: llanta delantera derecha</title>
+  <desc id="desc">Espacio reservado para la foto de llanta, rin y salpicadera delantera derecha.</desc>
+  <rect width="1600" height="1200" fill="#eee9e1"/>
+  <rect x="40" y="40" width="1520" height="1120" rx="36" fill="none" stroke="#8f1d2c" stroke-width="8" stroke-dasharray="28 22"/>
+  <text x="800" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#681421">Llanta delantera derecha</text>
+  <text x="800" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#656565">Archivo pendiente de reemplazar con la foto real</text>
+</svg>
