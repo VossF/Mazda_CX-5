@@ -154,24 +154,53 @@
       </div>
     </section>
 
-    <section class="section" id="fotos" aria-labelledby="galeria">
-      <div class="section-heading">
-        <p class="eyebrow">Fotos</p>
-        <h2 id="galeria">Galería</h2>
-        <p>Fotos clave del exterior, interior, cajuela y odómetro para revisar el estado general sin rodeos.</p>
+    <section class="section gallery-section" id="fotos" aria-labelledby="galeria">
+      <div class="section-heading gallery-heading">
+        <div>
+          <p class="eyebrow">Fotos</p>
+          <h2 id="galeria">Galería</h2>
+          <p>Exterior e interior separados para revisar rápido lo importante. Haz click en cualquier foto para agrandarla y navegar el carrusel.</p>
+        </div>
+        <button class="button secondary gallery-all-button" type="button" data-show-all-gallery>Ver todas las fotos</button>
       </div>
-      <div class="gallery">
-        <figure><img src="photos/mazda-cx5-2021-exterior-frontal-derecho.jpeg" alt="Mazda CX-5 Signature Turbo 2021 gris vista frontal derecha" loading="lazy"><figcaption>Mejor foto: exterior frontal derecho</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-vista-frontal.jpeg" alt="Vista frontal de la Mazda CX-5 2021 con parrilla y faros encendidos" loading="lazy"><figcaption>Vista frontal</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-trasera-tres-cuartos-derecha.jpeg" alt="Vista trasera tres cuartos derecha de la Mazda CX-5 Signature Turbo 2021" loading="lazy"><figcaption>Trasera tres cuartos</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-vista-trasera.jpeg" alt="Vista trasera de la Mazda CX-5 2021 con emblemas CX-5 Signature Turbo" loading="lazy"><figcaption>Vista trasera</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-volante-consola-interior.jpeg" alt="Interior de la Mazda CX-5 2021 con volante, tablero y consola central" loading="lazy"><figcaption>Volante, tablero y consola</figcaption></figure>
-        <figure class="portrait"><img src="photos/mazda-cx5-2021-asientos-delanteros-piel-clara.jpeg" alt="Asientos delanteros de piel clara de la Mazda CX-5 Signature Turbo 2021" loading="lazy"><figcaption>Asientos delanteros</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-asientos-traseros-piel-clara.jpeg" alt="Asientos traseros de piel clara de la Mazda CX-5 2021" loading="lazy"><figcaption>Asientos traseros</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-cajuela-con-cubierta-retractil.jpeg" alt="Cajuela de la Mazda CX-5 2021 con cubierta retráctil cerrada" loading="lazy"><figcaption>Cajuela con cubierta</figcaption></figure>
-        <figure><img src="photos/mazda-cx5-2021-odometro-50604-km.jpeg" alt="Odómetro de la Mazda CX-5 2021 marcando 50604 kilómetros" loading="lazy"><figcaption>Odómetro: 50,604 km</figcaption></figure>
+
+      <div class="gallery-groups" data-gallery-root>
+        <article class="gallery-group" data-group="Exterior">
+          <div class="gallery-group-header">
+            <div>
+              <p class="eyebrow">Exterior</p>
+              <h3>Carrocería, rines y detalles</h3>
+            </div>
+            <button class="text-button" type="button" data-gallery-toggle="Exterior" aria-expanded="false">Ver todas</button>
+          </div>
+          <div class="gallery" data-gallery-grid="Exterior"></div>
+        </article>
+
+        <article class="gallery-group" data-group="Interior">
+          <div class="gallery-group-header">
+            <div>
+              <p class="eyebrow">Interior</p>
+              <h3>Cabina, asientos, cajuela y odómetro</h3>
+            </div>
+            <button class="text-button" type="button" data-gallery-toggle="Interior" aria-expanded="false">Ver todas</button>
+          </div>
+          <div class="gallery" data-gallery-grid="Interior"></div>
+        </article>
       </div>
     </section>
+
+    <div class="lightbox" data-lightbox hidden>
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Cerrar carrusel">×</button>
+      <button class="lightbox-nav prev" type="button" data-lightbox-prev aria-label="Foto anterior">‹</button>
+      <figure class="lightbox-figure">
+        <img data-lightbox-image src="" alt="">
+        <figcaption>
+          <strong data-lightbox-title></strong>
+          <span data-lightbox-counter></span>
+        </figcaption>
+      </figure>
+      <button class="lightbox-nav next" type="button" data-lightbox-next aria-label="Foto siguiente">›</button>
+    </div>
 
     <section class="section split" aria-labelledby="servicios-documentos">
       <div class="section-heading">
@@ -220,5 +249,118 @@
   </footer>
 
   <a class="mobile-sticky" href="#contacto">Contacto</a>
+  <script>
+    const galleryPhotos = [
+      { group: 'Exterior', featured: true, src: 'photos/mazda-cx5-2021-exterior-frontal-derecho.jpeg', title: 'Exterior frontal derecho', alt: 'Mazda CX-5 Signature Turbo 2021 gris vista frontal derecha' },
+      { group: 'Exterior', featured: true, src: 'photos/mazda-cx5-2021-vista-frontal.jpeg', title: 'Vista frontal', alt: 'Vista frontal de la Mazda CX-5 2021 con parrilla y faros encendidos' },
+      { group: 'Exterior', featured: true, src: 'photos/mazda-cx5-2021-trasera-tres-cuartos-derecha.jpeg', title: 'Trasera tres cuartos derecha', alt: 'Vista trasera tres cuartos derecha de la Mazda CX-5 Signature Turbo 2021' },
+      { group: 'Exterior', featured: true, src: 'photos/mazda-cx5-2021-vista-trasera.jpeg', title: 'Vista trasera', alt: 'Vista trasera de la Mazda CX-5 2021 con emblemas CX-5 Signature Turbo' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-frontal-tres-cuartos-derecha.jpeg', title: 'Frontal tres cuartos derecha', alt: 'Mazda CX-5 2021 vista frontal tres cuartos derecha' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-frontal-tres-cuartos-izquierda.jpeg', title: 'Frontal tres cuartos izquierda', alt: 'Mazda CX-5 2021 vista frontal tres cuartos izquierda' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-trasera-tres-cuartos-izquierda.jpeg', title: 'Trasera tres cuartos izquierda', alt: 'Mazda CX-5 2021 vista trasera tres cuartos izquierda' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-lateral-derecho.jpeg', title: 'Lateral derecho', alt: 'Vista lateral derecha de la Mazda CX-5 2021' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-frente-lado-derecho.jpeg', title: 'Frente lado derecho', alt: 'Frente y costado derecho de la Mazda CX-5 2021' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-parrilla-faro-delantero.jpeg', title: 'Parrilla y faro delantero', alt: 'Detalle de parrilla y faro delantero de la Mazda CX-5 2021' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-detalle-faro-rin-delantero.jpeg', title: 'Faro y rin delantero', alt: 'Detalle de faro y rin delantero de la Mazda CX-5 2021' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-rin-delantero-derecho.jpeg', title: 'Rin delantero derecho', alt: 'Rin delantero derecho de la Mazda CX-5 2021' },
+      { group: 'Exterior', src: 'photos/mazda-cx5-2021-rin-trasero-derecho.jpeg', title: 'Rin trasero derecho', alt: 'Rin trasero derecho de la Mazda CX-5 2021' },
+      { group: 'Interior', featured: true, src: 'photos/mazda-cx5-2021-volante-consola-interior.jpeg', title: 'Volante, tablero y consola', alt: 'Interior de la Mazda CX-5 2021 con volante, tablero y consola central' },
+      { group: 'Interior', featured: true, src: 'photos/mazda-cx5-2021-asientos-delanteros-piel-clara.jpeg', title: 'Asientos delanteros', alt: 'Asientos delanteros de piel clara de la Mazda CX-5 Signature Turbo 2021' },
+      { group: 'Interior', featured: true, src: 'photos/mazda-cx5-2021-asientos-traseros-piel-clara.jpeg', title: 'Asientos traseros', alt: 'Asientos traseros de piel clara de la Mazda CX-5 2021' },
+      { group: 'Interior', featured: true, src: 'photos/mazda-cx5-2021-cajuela-con-cubierta-retractil.jpeg', title: 'Cajuela con cubierta', alt: 'Cajuela de la Mazda CX-5 2021 con cubierta retráctil cerrada' },
+      { group: 'Interior', src: 'photos/mazda-cx5-2021-tablero-pantalla-consola.jpeg', title: 'Tablero, pantalla y consola', alt: 'Tablero, pantalla central y consola de la Mazda CX-5 2021' },
+      { group: 'Interior', src: 'photos/mazda-cx5-2021-segunda-fila-espacio-piernas.jpeg', title: 'Espacio de segunda fila', alt: 'Espacio para piernas en la segunda fila de la Mazda CX-5 2021' },
+      { group: 'Interior', src: 'photos/mazda-cx5-2021-cajuela-abierta.jpeg', title: 'Cajuela abierta', alt: 'Cajuela abierta de la Mazda CX-5 2021' },
+      { group: 'Interior', src: 'photos/mazda-cx5-2021-cajuela-cubierta-retractil.jpeg', title: 'Cubierta retráctil', alt: 'Cubierta retráctil de la cajuela de la Mazda CX-5 2021' },
+      { group: 'Interior', src: 'photos/mazda-cx5-2021-bocina-bose-puerta.jpeg', title: 'Bocina Bose en puerta', alt: 'Detalle de bocina Bose en puerta de la Mazda CX-5 2021' },
+      { group: 'Interior', src: 'photos/mazda-cx5-2021-odometro-50604-km.jpeg', title: 'Odómetro: 50,604 km', alt: 'Odómetro de la Mazda CX-5 2021 marcando 50604 kilómetros' }
+    ];
+
+    const visibleGroups = { Exterior: false, Interior: false };
+    document.querySelector('[data-show-all-gallery]').textContent = `Ver todas las ${galleryPhotos.length} fotos`;
+    const galleryRoot = document.querySelector('[data-gallery-root]');
+    const lightbox = document.querySelector('[data-lightbox]');
+    const lightboxImage = document.querySelector('[data-lightbox-image]');
+    const lightboxTitle = document.querySelector('[data-lightbox-title]');
+    const lightboxCounter = document.querySelector('[data-lightbox-counter]');
+    let activeIndex = 0;
+
+    function renderGallery() {
+      ['Exterior', 'Interior'].forEach((group) => {
+        const grid = document.querySelector(`[data-gallery-grid="${group}"]`);
+        const showAll = visibleGroups[group];
+        const photos = galleryPhotos.filter((photo) => photo.group === group && (showAll || photo.featured));
+        grid.innerHTML = photos.map((photo) => {
+          const index = galleryPhotos.indexOf(photo);
+          return `<figure class="gallery-card"><button type="button" data-photo-index="${index}" aria-label="Abrir foto: ${photo.title}"><img src="${photo.src}" alt="${photo.alt}" loading="lazy"><span>Ampliar</span></button><figcaption>${photo.title}</figcaption></figure>`;
+        }).join('');
+      });
+    }
+
+    function openLightbox(index) {
+      activeIndex = index;
+      updateLightbox();
+      lightbox.hidden = false;
+      document.body.classList.add('is-lightbox-open');
+      document.querySelector('[data-lightbox-close]').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.classList.remove('is-lightbox-open');
+    }
+
+    function moveLightbox(step) {
+      activeIndex = (activeIndex + step + galleryPhotos.length) % galleryPhotos.length;
+      updateLightbox();
+    }
+
+    function updateLightbox() {
+      const photo = galleryPhotos[activeIndex];
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.alt;
+      lightboxTitle.textContent = photo.title;
+      lightboxCounter.textContent = `${activeIndex + 1} / ${galleryPhotos.length}`;
+    }
+
+    document.querySelectorAll('[data-gallery-toggle]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const group = button.dataset.galleryToggle;
+        visibleGroups[group] = !visibleGroups[group];
+        button.textContent = visibleGroups[group] ? 'Ver principales' : 'Ver todas';
+        button.setAttribute('aria-expanded', String(visibleGroups[group]));
+        renderGallery();
+      });
+    });
+
+    document.querySelector('[data-show-all-gallery]').addEventListener('click', () => {
+      visibleGroups.Exterior = true;
+      visibleGroups.Interior = true;
+      document.querySelectorAll('[data-gallery-toggle]').forEach((button) => {
+        button.textContent = 'Ver principales';
+        button.setAttribute('aria-expanded', 'true');
+      });
+      renderGallery();
+      galleryRoot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    galleryRoot.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-photo-index]');
+      if (trigger) openLightbox(Number(trigger.dataset.photoIndex));
+    });
+
+    document.querySelector('[data-lightbox-close]').addEventListener('click', closeLightbox);
+    document.querySelector('[data-lightbox-prev]').addEventListener('click', () => moveLightbox(-1));
+    document.querySelector('[data-lightbox-next]').addEventListener('click', () => moveLightbox(1));
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (event) => {
+      if (lightbox.hidden) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') moveLightbox(-1);
+      if (event.key === 'ArrowRight') moveLightbox(1);
+    });
+
+    renderGallery();
+  </script>
 </body>
 </html>
