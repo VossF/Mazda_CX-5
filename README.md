@@ -44,7 +44,7 @@ If there is no phone but there is an email, set `contactEmail` instead:
 const contactEmail = 'correo@ejemplo.com';
 ```
 
-If both values are blank, the page keeps the contact buttons hidden and shows a pending-contact note.
+If both values are blank, the page keeps all contact UI hidden, including the pending-contact note.
 
 ## 3. Photos
 

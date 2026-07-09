@@ -235,7 +235,7 @@
       </div>
       <div class="contact-card">
         <p>Si te interesa o conoces a alguien que esté buscando una CX-5 bien cuidada, pronto aparecerá aquí el medio directo para coordinar.</p>
-        <p class="contact-pending" data-contact-pending>Contacto directo pendiente de configurar.</p>
+        <p class="contact-pending" data-contact-pending hidden>Contacto directo pendiente de configurar.</p>
         <div class="actions">
           <a class="button primary" href="#contacto" data-contact-action hidden>Coordinar contacto</a>
           <a class="button secondary" href="#fotos">Volver a ver fotos</a>
@@ -266,7 +266,7 @@
 
       if (!href) {
         actions.forEach((action) => { action.hidden = true; });
-        if (pending) pending.hidden = false;
+        if (pending) pending.hidden = true;
         return;
       }
 
