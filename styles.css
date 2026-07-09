@@ -239,15 +239,31 @@ figcaption {
 }
 .spec-strip span { color: var(--muted); }
 .spec-strip strong { color: var(--text); }
+.feature-groups {
+  display: grid;
+  gap: 14px;
+}
+.feature-group {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: clamp(16px, 3vw, 20px);
+  background: rgba(255, 255, 255, 0.72);
+}
+.feature-group h3 {
+  margin-bottom: 10px;
+  color: var(--accent-dark);
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
 .feature-list {
-  columns: 1;
   margin: 0;
   padding-left: 1.2rem;
 }
 .feature-list li {
   break-inside: avoid;
-  margin: 8px 0;
+  margin: 7px 0;
 }
+.feature-list li::marker { color: var(--accent); }
 .fact-grid article { transition: transform 180ms ease, box-shadow 180ms ease; }
 .fact-grid article:hover {
   transform: translateY(-2px);
@@ -484,7 +500,7 @@ h3 {
   .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 26px; align-items: start; }
   .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .feature-highlights { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .feature-list { columns: 2; column-gap: 34px; }
+  .feature-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mobile-sticky { display: none; }
   .footer { padding-bottom: 42px; }
 }
