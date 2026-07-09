@@ -39,23 +39,23 @@ Example format for Mexico:
 
 Keep the rest of the link as-is unless you want to edit the prefilled message.
 
-## 3. Add photos
+## 3. Photos
 
-Put your car photos in the `photos/` folder using these exact file names for the current classified gallery:
+The `photos/` folder contains the 23 provided car photos with SEO-friendly, descriptive file names.
 
-- `01-cajuela.jpg`
-- `02-interior-delantero-tablero.jpg`
-- `03-consola-central.jpg`
-- `04-volante-tablero.jpg`
-- `05-asientos-traseros.jpg`
+The page uses the strongest sales photos in the visible gallery:
 
-Suggested classification for the provided photos:
+- `mazda-cx5-2021-exterior-frontal-derecho.jpeg` — primary hero image and best overall exterior shot.
+- `mazda-cx5-2021-vista-frontal.jpeg` — straight-on front view.
+- `mazda-cx5-2021-trasera-tres-cuartos-derecha.jpeg` — rear three-quarter view.
+- `mazda-cx5-2021-vista-trasera.jpeg` — straight-on rear view.
+- `mazda-cx5-2021-volante-consola-interior.jpeg` — dashboard, steering wheel, and center console.
+- `mazda-cx5-2021-asientos-delanteros-piel-clara.jpeg` — front leather seats.
+- `mazda-cx5-2021-asientos-traseros-piel-clara.jpeg` — rear leather seats.
+- `mazda-cx5-2021-cajuela-cubierta-retractil.jpeg` — cargo area with retractable cover.
+- `mazda-cx5-2021-odometro-50604-km.jpeg` — odometer reading.
 
-1. Cajuela / cargo area.
-2. Interior delantero / tablero general.
-3. Consola central / palanca / controles.
-4. Volante / tablero / cuadro de instrumentos.
-5. Asientos traseros / segunda fila.
+Additional renamed detail photos remain in `photos/` for future use.
 
 Important: blur plates before uploading photos if the plates are visible.
 
