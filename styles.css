@@ -19,7 +19,7 @@ body {
   background: var(--bg);
   line-height: 1.6;
 }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 
 .hero, .section, .footer {
@@ -118,10 +118,24 @@ h2 { font-size: clamp(1.8rem, 7vw, 3.2rem); }
 }
 .hero-photo img, .gallery img {
   width: 100%;
-  min-height: 230px;
-  object-fit: contain;
   background: #eee9e1;
+  object-fit: cover;
 }
+.hero-photo img {
+  height: clamp(320px, 52vw, 620px);
+  object-position: center;
+}
+.gallery img {
+  aspect-ratio: 4 / 3;
+  height: clamp(220px, 24vw, 300px);
+  min-height: 0;
+  object-position: center;
+}
+.gallery figure.portrait img {
+  aspect-ratio: 3 / 4;
+  height: clamp(420px, 48vw, 620px);
+}
+
 figcaption {
   padding: 12px 14px;
   color: var(--muted);
