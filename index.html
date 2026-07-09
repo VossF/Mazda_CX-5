@@ -24,7 +24,7 @@
   <header class="hero" id="inicio">
     <nav class="topbar" aria-label="Navegación principal">
       <a class="brand" href="#inicio" aria-label="Ir al inicio">CX-5 2021</a>
-      <a class="nav-contact" href="#contacto">Contacto</a>
+      <a class="nav-contact" href="#contacto" data-contact-action hidden>Contacto</a>
     </nav>
 
     <div class="hero-grid">
@@ -34,7 +34,7 @@
         <p class="subtitle">Único dueño · 50,500 km aprox. · Servicios en agencia Mazda · Pintura original</p>
         <p class="price">Precio de venta: <strong>$415,000 MXN</strong></p>
         <div class="actions">
-          <a class="button primary" href="#contacto">Coordinar contacto</a>
+          <a class="button primary" href="#contacto" data-contact-action hidden>Coordinar contacto</a>
           <a class="button secondary" href="#fotos">Ver fotos</a>
         </div>
       </div>
@@ -234,9 +234,10 @@
         <h2 id="contacto-titulo">¿Te interesa?</h2>
       </div>
       <div class="contact-card">
-        <p>Si te interesa o conoces a alguien que esté buscando una CX-5 bien cuidada, mándame mensaje y con gusto comparto más información.</p>
+        <p>Si te interesa o conoces a alguien que esté buscando una CX-5 bien cuidada, pronto aparecerá aquí el medio directo para coordinar.</p>
+        <p class="contact-pending" data-contact-pending>Contacto directo pendiente de configurar.</p>
         <div class="actions">
-          <a class="button primary" href="#contacto">Coordinar contacto</a>
+          <a class="button primary" href="#contacto" data-contact-action hidden>Coordinar contacto</a>
           <a class="button secondary" href="#fotos">Volver a ver fotos</a>
         </div>
       </div>
@@ -248,8 +249,34 @@
     <p>La información puede actualizarse; la venta final queda sujeta a revisión física del vehículo y documentación.</p>
   </footer>
 
-  <a class="mobile-sticky" href="#contacto">Contacto</a>
+  <a class="mobile-sticky" href="#contacto" data-contact-action hidden>Contacto</a>
   <script>
+    const contactPhone = '';
+    const contactEmail = '';
+    const contactMessage = 'Hola, me interesa la Mazda CX-5 Signature Turbo 2021. ¿Me puedes compartir más información?';
+
+    function configureContactActions() {
+      const actions = document.querySelectorAll('[data-contact-action]');
+      const pending = document.querySelector('[data-contact-pending]');
+      const href = contactPhone
+        ? `https://wa.me/${contactPhone}?text=${encodeURIComponent(contactMessage)}`
+        : contactEmail
+          ? `mailto:${contactEmail}?subject=${encodeURIComponent('Interés en Mazda CX-5 2021')}&body=${encodeURIComponent(contactMessage)}`
+          : '';
+
+      if (!href) {
+        actions.forEach((action) => { action.hidden = true; });
+        if (pending) pending.hidden = false;
+        return;
+      }
+
+      actions.forEach((action) => {
+        action.href = href;
+        action.hidden = false;
+      });
+      if (pending) pending.hidden = true;
+    }
+
     const galleryPhotos = [
       { group: 'Exterior', featured: true, src: 'photos/mazda-cx5-2021-exterior-frontal-derecho.jpeg', title: 'Exterior frontal derecho', alt: 'Mazda CX-5 Signature Turbo 2021 gris vista frontal derecha' },
       { group: 'Exterior', featured: true, src: 'photos/mazda-cx5-2021-vista-frontal.jpeg', title: 'Vista frontal', alt: 'Vista frontal de la Mazda CX-5 2021 con parrilla y faros encendidos' },
@@ -275,6 +302,8 @@
       { group: 'Interior', src: 'photos/mazda-cx5-2021-bocina-bose-puerta.jpeg', title: 'Bocina Bose en puerta', alt: 'Detalle de bocina Bose en puerta de la Mazda CX-5 2021' },
       { group: 'Interior', src: 'photos/mazda-cx5-2021-odometro-50604-km.jpeg', title: 'Odómetro: 50,604 km', alt: 'Odómetro de la Mazda CX-5 2021 marcando 50604 kilómetros' }
     ];
+
+    configureContactActions();
 
     const visibleGroups = { Exterior: false, Interior: false };
     document.querySelector('[data-show-all-gallery]').textContent = `Ver todas las ${galleryPhotos.length} fotos`;

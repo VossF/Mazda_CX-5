@@ -21,23 +21,30 @@ Open `index.html` in a text editor and search for the details you want to change
 
 Save the file after editing.
 
-## 2. Replace the WhatsApp number
+## 2. Enable the contact buttons
+
+Contact buttons are intentionally hidden until a phone or email is configured.
 
 In `index.html`, search for:
 
-```text
-52XXXXXXXXXX
+```js
+const contactPhone = '';
+const contactEmail = '';
 ```
 
-Replace it with your WhatsApp number in international format, without spaces or punctuation.
+To enable WhatsApp, set `contactPhone` in international format, without spaces or punctuation. Example for Mexico:
 
-Example format for Mexico:
-
-```text
-5213312345678
+```js
+const contactPhone = '5213312345678';
 ```
 
-Keep the rest of the link as-is unless you want to edit the prefilled message.
+If there is no phone but there is an email, set `contactEmail` instead:
+
+```js
+const contactEmail = 'correo@ejemplo.com';
+```
+
+If both values are blank, the page keeps the contact buttons hidden and shows a pending-contact note.
 
 ## 3. Photos
 
@@ -92,4 +99,5 @@ Before sharing the link:
 - Do not publish VIN unless intentionally decided.
 - Do not publish full license plate.
 - Do not include private negotiation limits or wholesale offers.
-- Open the site on your phone and confirm the WhatsApp button works.
+- Open the site on your phone and confirm the contact buttons stay hidden until `contactPhone` or `contactEmail` is configured.
+- After configuring a phone or email, confirm the contact button opens WhatsApp or email correctly.
