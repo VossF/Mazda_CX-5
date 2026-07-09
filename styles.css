@@ -229,6 +229,33 @@ figcaption {
 .features-details[open] summary { border-bottom: 1px solid #ead2d6; }
 .features-details[open] summary::after { content: "–"; }
 .features-content { padding: 18px clamp(18px, 4vw, 24px) 24px; }
+.features-collapse-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #ead2d6;
+}
+.features-collapse-button { cursor: pointer; }
+.features-floating-collapse {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 30;
+  display: block;
+  width: min(calc(100% - 32px), 340px);
+  margin: 0 auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 18px;
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 14px 30px rgba(104, 20, 33, 0.25);
+  font-weight: 900;
+  cursor: pointer;
+}
+.features-floating-collapse:hover { background: var(--accent-dark); }
 .spec-strip {
   display: grid;
   gap: 10px;
