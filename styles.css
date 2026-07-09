@@ -557,6 +557,9 @@ h3 {
   background: var(--soft-accent);
   font-weight: 800;
 }
+.contact-actions {
+  flex-wrap: wrap;
+}
 
 .price-card {
   border-color: #d9b7bd;
