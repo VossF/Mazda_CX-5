@@ -147,7 +147,11 @@
               </ul>
             </section>
           </div>
+          <div class="features-collapse-footer">
+            <button class="button secondary features-collapse-button" type="button" data-features-collapse>Contraer lista de características</button>
+          </div>
         </div>
+        <button class="features-floating-collapse" type="button" data-features-collapse hidden>Contraer características</button>
       </details>
     </section>
 
@@ -338,6 +342,32 @@
     ];
 
     configureContactActions();
+
+    const featuresDetails = document.querySelector('.features-details');
+    const featuresCollapseButtons = document.querySelectorAll('[data-features-collapse]');
+    const featuresFloatingCollapse = document.querySelector('.features-floating-collapse');
+
+    function updateFeaturesCollapseControl() {
+      if (!featuresDetails || !featuresFloatingCollapse) return;
+      featuresFloatingCollapse.hidden = !featuresDetails.open;
+    }
+
+    function collapseFeaturesList() {
+      if (!featuresDetails) return;
+      featuresDetails.open = false;
+      updateFeaturesCollapseControl();
+      featuresDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const summary = featuresDetails.querySelector('summary');
+      if (summary) summary.focus();
+    }
+
+    if (featuresDetails) {
+      featuresDetails.addEventListener('toggle', updateFeaturesCollapseControl);
+      featuresCollapseButtons.forEach((button) => {
+        button.addEventListener('click', collapseFeaturesList);
+      });
+      updateFeaturesCollapseControl();
+    }
 
     const visibleGroups = { Exterior: false, Interior: false };
     document.querySelector('[data-show-all-gallery]').textContent = `Ver todas las ${galleryPhotos.length} fotos`;
